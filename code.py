@@ -15,15 +15,10 @@ def hit():
 	print(popunder)
 	popunder[0].click()
 	print(driver.window_handles)
-	#driver.switch_to.window(driver.window_handles[0])
-	#print(driver.title)
-	#driver.switch_to.window(driver.window_handles[1])
-	#print(driver.title)
 	for x in driver.window_handles:
 		driver.switch_to.window(x)
 		print("Closing " + driver.title)
 		driver.close()
-	#driver.close()
-	#subprocess.run(['./kill-firefox.sh'])
+	subprocess.run(['./kill-firefox.sh'])
 while True:
 	hit()
