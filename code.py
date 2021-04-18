@@ -2,7 +2,6 @@ from selenium import webdriver
 import os
 import subprocess
 from selenium.webdriver.firefox.options import Options
-import time
 
 opts = Options()
 opts.headless = True
@@ -16,13 +15,15 @@ def hit():
 	print(popunder)
 	popunder[0].click()
 	print(driver.window_handles)
-	driver.switch_to.window(driver.window_handles[0])
-#	time.sleep(3)
-	print(driver.title)
-	driver.switch_to.window(driver.window_handles[1])
-#	time.sleep(3)
-	print(driver.title)
-	driver.close()
-	subprocess.run(['./kill-firefox.sh'])
+	#driver.switch_to.window(driver.window_handles[0])
+	#print(driver.title)
+	#driver.switch_to.window(driver.window_handles[1])
+	#print(driver.title)
+	for x in driver.window_handles:
+		driver.switch_to.window(x)
+		print("Closing " + driver.title)
+		driver.close()
+	#driver.close()
+	#subprocess.run(['./kill-firefox.sh'])
 while True:
 	hit()
